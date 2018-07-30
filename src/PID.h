@@ -3,6 +3,8 @@
 
 class PID {
 public:
+  double prev_cte;
+  double int_cte;
   /*
   * Errors
   */
