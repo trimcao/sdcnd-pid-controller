@@ -3,6 +3,16 @@ Self-Driving Car Engineer Nanodegree Program
 
 ---
 
+## Reflection
+The PID controller has 3 components: Proportional term, Integral term, and Derivative term.
+The Proportional term is equal to a value that is proportional to the current error value. This term is used to lower the error value. However, we need to prevent overshooting, otherwise we will have noticable oscillations while driving.
+The Integral term is proportional to the accumulated error from the beginning. From my understanding, this term will help correct any bias presented in the controller. For example, if the controller has a tendency to always turn left, the Integral term will help eliminate that bias.
+The Derivative term is proportional to the difference between current error and the error in the last time step. The Derivative term is used to improve the stability of the system, i.e. prevent oscillations.
+
+To come up with the hyperparameters, I start with the hyperparameters presented in the PID controller class. Of course, these values do not make the car drive, but they give an idea of these values' orders of magnitude. To be specific, Kp should be small because we want to avoid overshooting. Ki should be several orders of magnitude smaller because the accumulated error can be huge, and we don't want the Integral term to dominate. Meanwhile, since the difference between the errors in two time steps should be small, Kd should be larger so the Derivative term can make some impact. 
+
+I just do manual tuning of these 3 variables. It's unfortunate that I don't have time to explore further with faster speed, so I have to be happy with the current hyperparameters. 
+
 ## Dependencies
 
 * cmake >= 3.5
@@ -36,6 +46,7 @@ There's an experimental patch for windows in this [PR](https://github.com/udacit
 4. Run it: `./pid`. 
 
 Tips for setting up your environment can be found [here](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/f758c44c-5e40-4e01-93b5-1a82aa4e044f/concepts/23d376c7-0195-4276-bdf0-e02f1f3c665d)
+
 
 ## Editor Settings
 
